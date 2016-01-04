@@ -7,10 +7,16 @@ var quotes = [
   { author : 'Unknown', text : "Even the greatest was once a beginner. Don't be afraid to take that first step."},
   { author : 'Neale Donald Walsch', text : "You are afraid to die, and you're afraid to live. What a way to exist."}
 ];
-
+/*
+var mongoose = require( 'mongoose' );
+var ImageCollection     = mongoose.model( 'Images' );
+*/
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json(quotes);
+
+	var front_url = req.param('url');
+  	// res.json(quotes);
+  	res.send("Frontend:" + front_url);
 });
 
 module.exports = router;
