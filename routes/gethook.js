@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
 	var front_url = req.param('url');
 	
 	//front_url = "http://http://whitehouse.prod51.fr/wp/";
-	/*
+	
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
@@ -46,7 +46,7 @@ router.post('/', function(req, res, next) {
 	if(front_url === undefined) {
 	    res.send({message: "Frontend URL cannot be undefined"});
 	}
-
+	/*
 	var img_count = 0;
 
 	request({
