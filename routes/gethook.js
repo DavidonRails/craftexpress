@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
 	var front_url = req.param('url');
 	
 	//front_url = "http://http://whitehouse.prod51.fr/wp/";
-
+	/*
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
@@ -69,8 +69,8 @@ router.post('/', function(req, res, next) {
 			res.send({message: front_url + " cannot be scraped : " + JSON.stringify(error)});
 		}
 	});
-
-  	// res.send("Frontend:" + front_url);
+	*/
+  	res.send("Frontend:" + front_url);
 });
 
 
