@@ -10,6 +10,30 @@ var mongoose = require( 'mongoose' );
 var ImageCollection     = mongoose.model( 'Images' );
 */
 /* GET home page. */
+router.get('/', function(req, res, next) {
+	request({
+	  uri: "http://www.sitepoint.com/",
+	}, function(error, response, body) {
+		if(error) {
+			res.send(error);
+		} else {
+
+		  var $ = cheerio.load(body);
+
+		  var temp = "";
+
+		  $("img").each(function() {
+		    var link = $(this);
+		    var text = link.html();
+		    temp = text;
+		    
+		    console.log(text);
+		  });
+		  res.send(temp);
+		}
+	});
+})
+
 router.post('/', function(req, res, next) {
 	var front_url = req.param('url');
 	
@@ -34,7 +58,7 @@ router.post('/', function(req, res, next) {
 
 	    console.log(text);
 	  });
-	  res.send(text);
+
 	});
 
   	// res.send("Frontend:" + front_url);
