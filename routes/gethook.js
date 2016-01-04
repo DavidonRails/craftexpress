@@ -66,7 +66,7 @@ router.post('/', function(req, res, next) {
 
 			res.send({message: front_url + " can be parsed " + img_count + " images!"});
 		} else {
-			res.send({message: front_url + " cannot be scraped"});
+			res.send({message: front_url + " cannot be scraped : " + JSON.stringify(error)});
 		}
 	});
 
