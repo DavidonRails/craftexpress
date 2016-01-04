@@ -12,7 +12,7 @@ var ImageCollection     = mongoose.model( 'Images' );
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	request({
-	  uri: "http://www.sitepoint.com/",
+	  uri: "http://www.imdb.com/title/tt1229340/",
 	}, function(error, response, body) {
 		if(error) {
 			res.send(error);
@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 
 		  var temp = "";
 
-		  $("img").each(function() {
+		  $("#img_primary img").each(function() {
 		    var link = $(this);
 		    var text = link.html();
 		    temp = text;
@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 	var front_url = req.param('url');
 	
-	front_url = "http://http://whitehouse.prod51.fr/wp/";
+	//front_url = "http://http://whitehouse.prod51.fr/wp/";
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -47,18 +47,27 @@ router.post('/', function(req, res, next) {
 	    res.send({message: "Frontend URL cannot be undefined"});
 	}
 
+	var img_count = 0;
+
 	request({
-	  uri: "http://www.sitepoint.com",
+	  uri: front_url,
 	}, function(error, response, body) {
-	  var $ = cheerio.load(body);
 
-	  $(".Footer_copyright").each(function() {
-	    var link = $(this);
-	    var text = link.html();
+		if(!error) {
+			  var $ = cheerio.load(body);
 
-	    console.log(text);
-	  });
+			  $("article img").each(function() {
+			  	img_count++;
+			    var link = $(this);
+			    var text = link.html();
 
+			    console.log(text);
+			  });
+
+			res.send({message: front_url + " can be parsed " + img_count + " images!"});
+		} else {
+			res.send({message: front_url + " cannot be scraped"});
+		}
 	});
 
   	// res.send("Frontend:" + front_url);
