@@ -23,14 +23,14 @@ router.post('/', function(req, res, next) {
 	if(front_url === undefined) {
 	    res.send({message: "Frontend URL cannot be undefined"});
 	}
-
+/*
 	var urlPrefix = front_url.match(/.*?:\/\//g);
 	front_url = front_url.replace(/.*?:\/\//g, "");
-
+*/
 	var options = {
 	    hostname: front_url
 	};
-
+/*
 	if(urlPrefix !== undefined && urlPrefix !== null && urlPrefix[0] === "https://") {
 	    options.port = 443;
 	    https.get(options, function(result) {
@@ -38,14 +38,14 @@ router.post('/', function(req, res, next) {
 	    }).on('error', function(e) {
 	        res.send({message: e.message});
 	    });
-	} else {
-	    options.port = 80;
+	} else {*/
+	    //options.port = 80;
 	    http.get(options, function(result) {
 	        processResponse(result);
 	    }).on('error', function(e) {
 	        res.send({message: e.message});
 	    });
-	}
+	// }
 
 	var processResponse = function(result) {
 	    var data = "";
