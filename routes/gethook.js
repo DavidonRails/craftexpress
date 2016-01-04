@@ -12,10 +12,17 @@ var mongoose = require( 'mongoose' );
 var ImageCollection     = mongoose.model( 'Images' );
 */
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
 	var front_url = req.param('url');
   	// res.json(quotes);
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
+
   	res.send("Frontend:" + front_url);
 });
 
